@@ -20,7 +20,7 @@
 
 ## Description
 
-Currency Exchanger allows users to compare the USD to other currencies. They are invited to input an amount of USD, and any currency with an ISO code of their choosing, and they are returned the corresponding amount in that currency. 
+Currency Exchanger allows users to compare the USD to other currencies. They are invited to input an amount of USD and any currency with an ISO code of their choosing, and they are returned the conversion.  
 
 ## Setup/Installation Requirements
 
