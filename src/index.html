@@ -5,18 +5,14 @@
 </head>
 <body>
   <h1>Currency Exchanger: Convert USD to another currency</h1>
+  </br>
   <form>
-    <label>Choose a currency:</label>
-    <select id="currency">
-      <option value="BGN">BGN (Bulgaria)</option>
-      <option value="CNY">CNY (China)</option>
-      <option value="SOS">SOS (Somalia)</option>
-      <option value="JMD">JMD (Jamaica)</option>
-      <option value="MMK">MMK (Myanmar)</option>
-    </select>
+    <label>Input a currency by 3-letter code (e.g. BGN for the Bulgarian lev):</label>
+    <input id="currency" type="text">
+  </br>
     <label>Input the amount of USD you would like to convert:</label>
-    <input id="amount" type="number">
-    <button type="submit">Submit</button>
+    <input id="amount" type="number" required>
+    <button type="submit">Go</button>
   </form>
   </br>
   <p id="results"></p>

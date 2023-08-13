@@ -5,8 +5,8 @@ import ExchangeService from './xchange.js';
 
 //Business Logic
 
-function getExchange(otherCurrency) {
-  ExchangeService.getExchange(otherCurrency)
+function getExchange(amountUSD, otherCurrency) {
+  ExchangeService.getExchange(amountUSD, otherCurrency)
   .then(function(response) {
     if (response.conversion_rates) {
       //printElements(response, amountUSD, otherCurrency);
@@ -20,16 +20,22 @@ function getExchange(otherCurrency) {
 
 //UI Logic
 
-function convert(response, otherCurrency) {
+function convert(response, amountUSD, otherCurrency) {
   const responses = response.conversion_rates;
-  const conversion = responses.otherCurrency;
-  document.getElementById("results").innerText = conversion 
+  const conversion = responses[otherCurrency] * amountUSD;
+
+  if (conversion === undefined) {
+    document.getElementById("results").innerText = `${otherCurrency} is not a valid currency`
+  } else {
+    document.getElementById("results").innerText = `${amountUSD} USD = ${conversion} ${otherCurrency}`;
+  }
+
 }
 
 function handleForm(event) {
   event.preventDefault();
   const amountUSD = document.getElementById("amount").value;
-  const otherCurrency = document.getElementById("currency").value;
+  const otherCurrency = document.getElementById("currency").value.toUpperCase();
   document.getElementById("amount").value = null;
   document.getElementById("currency").value = null;
   getExchange(amountUSD, otherCurrency);
