@@ -9,10 +9,9 @@ function getExchange(amountUSD, otherCurrency) {
   ExchangeService.getExchange(amountUSD, otherCurrency)
   .then(function(response) {
     if (response.conversion_rates) {
-      //printElements(response, amountUSD, otherCurrency);
       convert(response, amountUSD, otherCurrency);
     } else {
-      //printError(response);
+      printError(response);
     }
   });
 }
@@ -23,13 +22,18 @@ function getExchange(amountUSD, otherCurrency) {
 function convert(response, amountUSD, otherCurrency) {
   const responses = response.conversion_rates;
   const conversion = responses[otherCurrency] * amountUSD;
-
+  console.log(conversion);
   if (conversion === undefined) {
-    document.getElementById("results").innerText = `${otherCurrency} is not a valid currency`
+    document.getElementById("results").innerText = `"${otherCurrency}" is not a valid currency`;
+  } else if (isNaN(conversion)) {
+    document.getElementById("results").innerText = `"${otherCurrency}" is not a valid currency`;
   } else {
     document.getElementById("results").innerText = `${amountUSD} USD = ${conversion} ${otherCurrency}`;
   }
+}
 
+function printError(error) {
+  document.getElementById("results").innerText = `There was an error accessing the exchange rate data: ${error}.`;
 }
 
 function handleForm(event) {
