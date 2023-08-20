@@ -16,13 +16,11 @@ function getExchange(amountUSD, otherCurrency) {
   });
 }
 
-
 //UI Logic
 
 function convert(response, amountUSD, otherCurrency) {
   const responses = response.conversion_rates;
   const conversion = responses[otherCurrency] * amountUSD;
-  console.log(conversion);
   if (conversion === undefined) {
     document.getElementById("results").innerText = `"${otherCurrency}" is not a valid currency`;
   } else if (isNaN(conversion)) {
